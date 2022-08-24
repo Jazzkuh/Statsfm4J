@@ -1,4 +1,4 @@
-package com.jazzkuh.statsfm4j.objects;
+package com.jazzkuh.statsfm4j.objects.users;
 
 import com.google.gson.JsonObject;
 import lombok.Getter;

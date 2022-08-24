@@ -2,8 +2,7 @@ package com.jazzkuh.statsfm4j;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
-import com.jazzkuh.statsfm4j.objects.UserPublic;
+import com.jazzkuh.statsfm4j.objects.users.UserPublic;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 
 public class Statsfm4J {
     public static @Getter @Setter String baseUrl = "https://api.stats.fm/api/v1";
@@ -47,6 +47,9 @@ public class Statsfm4J {
             System.out.println("User not found");
             return;
         }
-        System.out.println(userPublic.toString());
+
+        userPublic.getSocialMediaConnections().forEach(userSocialMediaConnection -> {
+            System.out.println(userSocialMediaConnection.getPlatformUsername());
+        });
     }
 }
