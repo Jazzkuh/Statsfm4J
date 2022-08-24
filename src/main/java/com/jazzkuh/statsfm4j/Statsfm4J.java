@@ -2,6 +2,7 @@ package com.jazzkuh.statsfm4j;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import com.jazzkuh.statsfm4j.objects.UserPublic;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,19 +15,22 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Statsfm4J {
-    public @Getter @Setter String baseUrl = "https://stats.fm/api/v1";
+    public static @Getter @Setter String baseUrl = "https://api.stats.fm/api/v1";
 
-    public UserPublic getUserPublic(String userId) {
-        String url = baseUrl + "/user/" + userId;
-        JsonObject json = this.getJsonObject(url, "GET");
-        return new UserPublic(json);
+    public static UserPublic getUserPublic(String userId) {
+        String url = baseUrl + "/users/" + userId;
+        JsonObject json = getJsonObject(url);
+        if (json == null) return null;
+        System.out.println(json);
+        return new UserPublic(json.getAsJsonObject("item"));
     }
 
-    private JsonObject getJsonObject(String url, String method) {
+    private static JsonObject getJsonObject(String url) {
         try {
             HttpURLConnection connection = (HttpsURLConnection) new URL(url).openConnection();
             connection.setConnectTimeout(5000);
-            connection.setRequestMethod(method);
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
             connection.connect();
 
             return new JsonParser().parse(new InputStreamReader((InputStream) connection.getContent()))
@@ -35,5 +39,14 @@ public class Statsfm4J {
         }
 
         return null;
+    }
+
+    public static void main(String[] args) {
+        UserPublic userPublic = getUserPublic("jazzkuh");
+        if (userPublic == null) {
+            System.out.println("User not found");
+            return;
+        }
+        System.out.println(userPublic.toString());
     }
 }

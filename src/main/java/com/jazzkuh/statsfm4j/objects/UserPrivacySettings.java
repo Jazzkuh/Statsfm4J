@@ -3,31 +3,32 @@ package com.jazzkuh.statsfm4j.objects;
 import com.google.gson.JsonObject;
 import lombok.Getter;
 
-public class UserPublic {
+public class UserPrivacySettings {
     private final @Getter JsonObject json;
 
-    private final @Getter String id;
-    private final @Getter String customId;
-    private final @Getter String displayName;
-    private final @Getter String image;
-    private final @Getter boolean isPlus;
-    private final @Getter boolean hasImported;
-    private final @Getter boolean syncEnabled;
-    private final @Getter String orderBy;
-    private @Getter JsonObject privacySettings;
-    private @Getter JsonObject profile;
-    private @Getter JsonObject socialMediaConnections;
+    private final @Getter boolean profile;
+    private final @Getter boolean currentlyPlaying;
+    private final @Getter boolean recentlyPlayed;
+    private final @Getter boolean topTracks;
+    private final @Getter boolean topArtists;
+    private final @Getter boolean topAlbums;
+    private final @Getter boolean topGenres;
+    private final @Getter boolean streams;
+    private final @Getter boolean streamStats;
+    private final @Getter boolean leaderboards;
 
-    public UserPublic(JsonObject json) {
+    public UserPrivacySettings(JsonObject json) {
         this.json = json;
-        this.id = json.get("id").getAsString();
-        this.customId = json.get("customId").getAsString();
-        this.displayName = json.get("displayName").getAsString();
-        this.image = json.get("image").getAsString();
-        this.isPlus = json.get("isPlus").getAsBoolean();
-        this.hasImported = json.get("hasImported").getAsBoolean();
-        this.syncEnabled = json.get("syncEnabled").getAsBoolean();
-        this.orderBy = json.get("orderBy").getAsString();
+        this.profile = json.get("profile").getAsBoolean();
+        this.currentlyPlaying = json.get("currentlyPlaying").getAsBoolean();
+        this.recentlyPlayed = json.get("recentlyPlayed").getAsBoolean();
+        this.topTracks = json.get("topTracks").getAsBoolean();
+        this.topArtists = json.get("topArtists").getAsBoolean();
+        this.topAlbums = json.get("topAlbums").getAsBoolean();
+        this.topGenres = json.get("topGenres").getAsBoolean();
+        this.streams = json.get("streams").getAsBoolean();
+        this.streamStats = json.get("streamStats").getAsBoolean();
+        this.leaderboards = json.get("leaderboards").getAsBoolean();
     }
 
     public String toString() {
