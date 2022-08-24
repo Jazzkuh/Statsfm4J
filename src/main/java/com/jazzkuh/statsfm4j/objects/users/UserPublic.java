@@ -2,14 +2,13 @@ package com.jazzkuh.statsfm4j.objects.users;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.jazzkuh.statsfm4j.abstraction.AbstractJsonResult;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserPublic {
-    private final @Getter JsonObject json;
-
+public class UserPublic extends AbstractJsonResult {
     private final @Getter String id;
     private final @Getter String customId;
     private final @Getter String displayName;
@@ -23,11 +22,12 @@ public class UserPublic {
     private final @Getter List<UserSocialMediaConnection> socialMediaConnections;
 
     public UserPublic(JsonObject json) {
-        this.json = json;
-        this.id = json.get("id").getAsString();
-        this.customId = json.get("customId").getAsString();
-        this.displayName = json.get("displayName").getAsString();
-        this.image = json.get("image").getAsString();
+        super(json);
+
+        this.id = getString("id");
+        this.customId = getString("customId");
+        this.displayName = getString("displayName");
+        this.image = getString("image");
         this.isPlus = json.get("isPlus").getAsBoolean();
         this.hasImported = json.get("hasImported").getAsBoolean();
         this.syncEnabled = json.get("syncEnabled").getAsBoolean();
@@ -41,9 +41,5 @@ public class UserPublic {
             connectionList.add(new UserSocialMediaConnection(mediaConnections.get(i).getAsJsonObject()));
         }
         this.socialMediaConnections = connectionList;
-    }
-
-    public String toString() {
-        return json.toString();
     }
 }

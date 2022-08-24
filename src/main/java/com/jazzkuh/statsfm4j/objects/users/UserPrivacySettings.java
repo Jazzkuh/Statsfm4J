@@ -1,11 +1,10 @@
 package com.jazzkuh.statsfm4j.objects.users;
 
 import com.google.gson.JsonObject;
+import com.jazzkuh.statsfm4j.abstraction.AbstractJsonResult;
 import lombok.Getter;
 
-public class UserPrivacySettings {
-    private final @Getter JsonObject json;
-
+public class UserPrivacySettings extends AbstractJsonResult {
     private final @Getter boolean profile;
     private final @Getter boolean currentlyPlaying;
     private final @Getter boolean recentlyPlayed;
@@ -18,7 +17,8 @@ public class UserPrivacySettings {
     private final @Getter boolean leaderboards;
 
     public UserPrivacySettings(JsonObject json) {
-        this.json = json;
+        super(json);
+
         this.profile = json.get("profile").getAsBoolean();
         this.currentlyPlaying = json.get("currentlyPlaying").getAsBoolean();
         this.recentlyPlayed = json.get("recentlyPlayed").getAsBoolean();
@@ -29,9 +29,5 @@ public class UserPrivacySettings {
         this.streams = json.get("streams").getAsBoolean();
         this.streamStats = json.get("streamStats").getAsBoolean();
         this.leaderboards = json.get("leaderboards").getAsBoolean();
-    }
-
-    public String toString() {
-        return json.toString();
     }
 }

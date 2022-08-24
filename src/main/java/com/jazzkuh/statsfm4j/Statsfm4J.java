@@ -42,14 +42,11 @@ public class Statsfm4J {
     }
 
     public static void main(String[] args) {
-        UserPublic userPublic = getUserPublic("jazzkuh");
+        UserPublic userPublic = getUserPublic("wouter");
         if (userPublic == null) {
             System.out.println("User not found");
             return;
         }
-
-        userPublic.getSocialMediaConnections().forEach(userSocialMediaConnection -> {
-            System.out.println(userSocialMediaConnection.getPlatformUsername());
-        });
+        System.out.println(userPublic.getImage());
     }
 }
