@@ -3,6 +3,8 @@ package com.jazzkuh.statsfm4j;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.jazzkuh.statsfm4j.objects.users.UserPublic;
+import com.jazzkuh.statsfm4j.objects.users.stats.UserStats;
+import com.jazzkuh.statsfm4j.objects.users.stats.UserStreams;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +14,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Arrays;
 
 public class Statsfm4J {
     public static @Getter @Setter String baseUrl = "https://api.stats.fm/api/v1";
@@ -21,8 +22,21 @@ public class Statsfm4J {
         String url = baseUrl + "/users/" + userId;
         JsonObject json = getJsonObject(url);
         if (json == null) return null;
-        System.out.println(json);
         return new UserPublic(json.getAsJsonObject("item"));
+    }
+
+    public static UserStreams getUserStreams(String userId) {
+        String url = baseUrl + "/users/" + userId + "/streams";
+        JsonObject json = getJsonObject(url);
+        if (json == null) return null;
+        return new UserStreams(json);
+    }
+
+    public static UserStats getUserStats(String userId) {
+        String url = baseUrl + "/users/" + userId + "/streams/stats";
+        JsonObject json = getJsonObject(url);
+        if (json == null) return null;
+        return new UserStats(json.getAsJsonObject("items"));
     }
 
     private static JsonObject getJsonObject(String url) {
@@ -47,6 +61,6 @@ public class Statsfm4J {
             System.out.println("User not found");
             return;
         }
-        System.out.println(userPublic.getImage());
+        System.out.println(getUserStats("wouter"));
     }
 }
