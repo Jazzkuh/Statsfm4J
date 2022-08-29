@@ -15,6 +15,7 @@ public class Artist extends AbstractJsonResult {
     private final @Getter Long id;
     private final @Getter String image;
     private final @Getter Long spotifyPopularity;
+    private final @Getter List<String> spotifyIds;
 
     public Artist(JsonObject json) {
         super(json);
@@ -30,5 +31,12 @@ public class Artist extends AbstractJsonResult {
         this.id = json.get("id").getAsLong();
         this.image = getString("image");
         this.spotifyPopularity = json.get("spotifyPopularity").getAsLong();
+
+        List<String> rawSpotifyIds = new ArrayList<>();
+        JsonArray spotifyIdArray = json.get("externalIds").getAsJsonObject().get("spotify").getAsJsonArray();
+        for (int i = 0; i < spotifyIdArray.size(); i++) {
+            rawSpotifyIds.add(spotifyIdArray.get(i).getAsString());
+        }
+        this.spotifyIds = rawSpotifyIds;
     }
 }

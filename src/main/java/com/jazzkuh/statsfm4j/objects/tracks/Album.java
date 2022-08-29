@@ -47,6 +47,7 @@ public class Album extends AbstractJsonResult {
     private final @Getter List<Artist> artists;
     private final @Getter Long id;
     private final @Getter String type;
+    private final @Getter List<String> spotifyIds;
 
     public Album(JsonObject json) {
         super(json);
@@ -74,5 +75,12 @@ public class Album extends AbstractJsonResult {
         this.artists = rawArtists;
         this.id = json.get("id").getAsLong();
         this.type = getString("type");
+
+        List<String> rawSpotifyIds = new ArrayList<>();
+        JsonArray spotifyIdArray = json.get("externalIds").getAsJsonObject().get("spotify").getAsJsonArray();
+        for (int i = 0; i < spotifyIdArray.size(); i++) {
+            rawSpotifyIds.add(spotifyIdArray.get(i).getAsString());
+        }
+        this.spotifyIds = rawSpotifyIds;
     }
 }
