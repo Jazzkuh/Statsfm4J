@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Statsfm4J {
     public static @Getter @Setter String baseUrl = "https://api.stats.fm/api/v1";
 
-    public static PublicUser getUserPublic(String userId) {
+    public static PublicUser getPublicUser(String userId) {
         String url = baseUrl + "/users/" + userId;
         JsonObject json = JsonUtils.getJsonObject(url);
         if (json == null) return null;
@@ -66,7 +66,7 @@ public class Statsfm4J {
     }
 
     public static void main(String[] args) {
-        PublicUser publicUser = getUserPublic("wouter");
+        PublicUser publicUser = getPublicUser("wouter");
         if (publicUser == null) {
             System.out.println("User not found");
             return;
