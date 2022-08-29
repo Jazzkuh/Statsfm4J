@@ -6,7 +6,7 @@ import com.jazzkuh.statsfm4j.objects.tracks.Album;
 import com.jazzkuh.statsfm4j.objects.tracks.Artist;
 import com.jazzkuh.statsfm4j.objects.tracks.Track;
 import com.jazzkuh.statsfm4j.objects.users.UserCurrentTrack;
-import com.jazzkuh.statsfm4j.objects.users.UserPublic;
+import com.jazzkuh.statsfm4j.objects.users.PublicUser;
 import com.jazzkuh.statsfm4j.objects.users.stats.UserStats;
 import com.jazzkuh.statsfm4j.objects.users.stats.UserStreams;
 import lombok.Getter;
@@ -15,11 +15,11 @@ import lombok.Setter;
 public class Statsfm4J {
     public static @Getter @Setter String baseUrl = "https://api.stats.fm/api/v1";
 
-    public static UserPublic getUserPublic(String userId) {
+    public static PublicUser getUserPublic(String userId) {
         String url = baseUrl + "/users/" + userId;
         JsonObject json = JsonUtils.getJsonObject(url);
         if (json == null) return null;
-        return new UserPublic(json.getAsJsonObject("item"));
+        return new PublicUser(json.getAsJsonObject("item"));
     }
 
     public static UserStreams getUserStreams(String userId) {
@@ -66,13 +66,13 @@ public class Statsfm4J {
     }
 
     public static void main(String[] args) {
-        UserPublic userPublic = getUserPublic("wouter");
-        if (userPublic == null) {
+        PublicUser publicUser = getUserPublic("wouter");
+        if (publicUser == null) {
             System.out.println("User not found");
             return;
         }
         System.out.println(getUserStats("wouter"));
         System.out.println(getTrack("10899778"));
-        System.out.println(userPublic.getCurrentTrack());
+        System.out.println(publicUser.getCurrentTrack());
     }
 }

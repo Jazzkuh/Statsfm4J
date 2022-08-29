@@ -12,7 +12,7 @@ import lombok.SneakyThrows;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserPublic extends AbstractJsonResult {
+public class PublicUser extends AbstractJsonResult {
     private final @Getter String id;
     private final @Getter String customId;
     private final @Getter String displayName;
@@ -25,7 +25,7 @@ public class UserPublic extends AbstractJsonResult {
     private final @Getter UserProfile profile;
     private final @Getter List<UserSocialMediaConnection> socialMediaConnections;
 
-    public UserPublic(JsonObject json) {
+    public PublicUser(JsonObject json) {
         super(json);
         this.id = getString("id");
         this.customId = getString("customId");
