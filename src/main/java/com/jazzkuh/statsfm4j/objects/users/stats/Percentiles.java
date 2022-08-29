@@ -15,7 +15,6 @@ public class Percentiles extends AbstractJsonResult {
 
     public Percentiles(JsonObject json) {
         super(json);
-
         this.percentiles1 = json.get("values").getAsJsonObject().get("1.0").getAsDouble();
         this.percentiles5 = json.get("values").getAsJsonObject().get("5.0").getAsDouble();
         this.percentiles25 = json.get("values").getAsJsonObject().get("25.0").getAsDouble();

@@ -18,7 +18,6 @@ public class UserPrivacySettings extends AbstractJsonResult {
 
     public UserPrivacySettings(JsonObject json) {
         super(json);
-
         this.profile = json.get("profile").getAsBoolean();
         this.currentlyPlaying = json.get("currentlyPlaying").getAsBoolean();
         this.recentlyPlayed = json.get("recentlyPlayed").getAsBoolean();

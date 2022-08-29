@@ -14,7 +14,6 @@ public class UserSocialMediaConnection extends AbstractJsonResult {
 
     public UserSocialMediaConnection(JsonObject json) {
         super(json);
-
         this.id = json.get("id").getAsInt();
         this.verified = json.get("verified").getAsBoolean();
         this.platformUserId = getString("platformUserId");

@@ -2,8 +2,12 @@ package com.jazzkuh.statsfm4j.objects.users;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.jazzkuh.statsfm4j.Statsfm4J;
 import com.jazzkuh.statsfm4j.abstraction.AbstractJsonResult;
+import com.jazzkuh.statsfm4j.objects.users.stats.UserStats;
+import com.jazzkuh.statsfm4j.objects.users.stats.UserStreams;
 import lombok.Getter;
+import lombok.SneakyThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +27,6 @@ public class UserPublic extends AbstractJsonResult {
 
     public UserPublic(JsonObject json) {
         super(json);
-
         this.id = getString("id");
         this.customId = getString("customId");
         this.displayName = getString("displayName");
@@ -41,5 +44,18 @@ public class UserPublic extends AbstractJsonResult {
             connectionList.add(new UserSocialMediaConnection(mediaConnections.get(i).getAsJsonObject()));
         }
         this.socialMediaConnections = connectionList;
+    }
+
+    public UserStreams getUserStreams() {
+        return Statsfm4J.getUserStreams(this.id);
+    }
+
+    public UserStats getUserStats() {
+        return Statsfm4J.getUserStats(this.id);
+    }
+
+    @SneakyThrows
+    public UserCurrentTrack getCurrentTrack() {
+        return Statsfm4J.getUserCurrentTrack(this.id);
     }
 }

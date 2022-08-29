@@ -10,7 +10,6 @@ public class UserSocialMediaPlatform extends AbstractJsonResult {
 
     public UserSocialMediaPlatform(JsonObject json) {
         super(json);
-
         this.name = getString("name");
         this.icon = getString("icon");
     }

@@ -20,7 +20,6 @@ public class UserStreamObject extends AbstractJsonResult {
 
     public UserStreamObject(JsonObject json) {
         super(json);
-
         this.id = getString("id");
         this.userId = getString("userId");
         this.endTime = getString("endTime");

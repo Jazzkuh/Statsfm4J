@@ -21,7 +21,6 @@ public class UserStats extends AbstractJsonResult {
 
     public UserStats(JsonObject json) {
         super(json);
-
         this.durationMs = json.get("durationMs").getAsLong();
         this.count = json.get("count").getAsLong();
         this.playedMs = new Percentiles(json.get("playedMs").getAsJsonObject().get("percentiles").getAsJsonObject());

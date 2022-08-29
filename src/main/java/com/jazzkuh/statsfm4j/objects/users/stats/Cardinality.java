@@ -11,7 +11,6 @@ public class Cardinality extends AbstractJsonResult {
 
     public Cardinality(JsonObject json) {
         super(json);
-
         this.tracks = json.get("tracks").getAsLong();
         this.artists = json.get("artists").getAsLong();
         this.albums = json.get("albums").getAsLong();
