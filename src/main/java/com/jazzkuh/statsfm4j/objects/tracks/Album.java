@@ -10,33 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Album extends AbstractJsonResult {
-    /*
-    "name": "Shipwreck",
-"image": "https://i.scdn.co/image/ab67616d0000b2737cafaa195d2909d85b675983",
-"label": "Munn",
-"spotifyPopularity": 18,
-"totalTracks": 1,
-"releaseDate": 1584057600000,
-"genres": [],
-"artists": [
-{
-"id": 77967,
-"name": "Munn"
-},
-{
-"id": 202338,
-"name": "han.irl <3"
-}
-],
-"externalIds": {
-"upc": "195069443230",
-"spotify": [
-"7bbVRQ0HTVdZm9PJFt0jja"
-]
-},
-"type": "single",
-"id": 1659137
-     */
     private final @Getter String name;
     private final @Getter String image;
     private final @Getter String label;

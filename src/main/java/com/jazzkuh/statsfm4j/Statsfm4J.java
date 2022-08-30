@@ -66,7 +66,7 @@ public class Statsfm4J {
     }
 
     public static void main(String[] args) {
-        PublicUser publicUser = getPublicUser("wouter");
+        PublicUser publicUser = getPublicUser("jazzkuh");
         if (publicUser == null) {
             System.out.println("User not found");
             return;
