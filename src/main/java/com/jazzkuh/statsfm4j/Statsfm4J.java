@@ -45,21 +45,33 @@ public class Statsfm4J {
     }
 
     public static Artist getArtist(String artistId) {
-        String url = baseUrl + "/artists/" + artistId;
+        return getArtist(artistId, false);
+    }
+
+    public static Artist getArtist(String artistId, boolean isSpotifyId) {
+        String url = baseUrl + "/artists/" + artistId + (isSpotifyId ? "?type=spotify" : "");
         JsonObject json = JsonUtils.getJsonObject(url);
         if (json == null) return null;
         return new Artist(json.getAsJsonObject("item"));
     }
 
     public static Album getAlbum(String albumId) {
-        String url = baseUrl + "/albums/" + albumId;
+        return getAlbum(albumId, false);
+    }
+
+    public static Album getAlbum(String albumId, boolean isSpotifyId) {
+        String url = baseUrl + "/albums/" + albumId + (isSpotifyId ? "?type=spotify" : "");
         JsonObject json = JsonUtils.getJsonObject(url);
         if (json == null) return null;
         return new Album(json.getAsJsonObject("item"));
     }
 
     public static Track getTrack(String trackId) {
-        String url = baseUrl + "/tracks/" + trackId;
+        return getTrack(trackId, false);
+    }
+
+    public static Track getTrack(String trackId, boolean isSpotifyId) {
+        String url = baseUrl + "/tracks/" + trackId + (isSpotifyId ? "?type=spotify" : "");
         JsonObject json = JsonUtils.getJsonObject(url);
         if (json == null) return null;
         return new Track(json.getAsJsonObject("item"));
